@@ -16,7 +16,6 @@ def del2(im):
             im_new[j,i] = (im[j-1,i]+im[j+1,i]+im[j,i-1]+im[j,i+1])/4-im[j,i]
     return im_new
 
-
 def srad(im, delta):
     q0 = 1
     for n in range(1, 6):
