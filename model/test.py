@@ -1,21 +1,13 @@
 import numpy as np
 import skimage
-from skimage import io, measure
-import random
-import scipy.io as sio
-import matplotlib
+from skimage import io
 import matplotlib.pyplot as plt
-from preclassify import del2, srad, dicomp, FCM, hcluster
+from preclassify import dicomp, hcluster
 import torch
-import torchvision
-from torchvision import transforms
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
 import cv2
-from collections import  Counter
 
-import joblib
 
 class MRC(nn.Module):
     def __init__(self, inchannel):
@@ -111,10 +103,30 @@ def DCT(x):
       dct_out=out.view(x.shape[0], 1, 96)
       return dct_out
 
+def image_padding(data,r):
+    if len(data.shape)==3:
+        data_new=np.lib.pad(data,((r,r),(r,r),(0,0)),'constant',constant_values=0)
+        return data_new
+    if len(data.shape)==2:
+        data_new=np.lib.pad(data,r,'constant',constant_values=0)
+        return data_new
+
+def createTestingCubes(X, patch_size):
+    # 给 X 做 padding
+    margin = int((patch_size - 1) / 2)
+    zeroPaddedX = image_padding(X, margin)
+    patchesData = np.zeros( (X.shape[0]*X.shape[1], patch_size, patch_size, X.shape[2]) )
+    patchIndex = 0
+    for r in range(margin, zeroPaddedX.shape[0] - margin):
+        for c in range(margin, zeroPaddedX.shape[1] - margin):
+            patch = zeroPaddedX[r - margin:r + margin + 1, c - margin:c + margin + 1]   
+            patchesData[patchIndex, :, :, :] = patch
+            patchIndex = patchIndex + 1
+    return patchesData
+
 if __name__ == "__main__":
     im1_path  = 'ottawa_1.bmp'
     im2_path  = 'ottawa_2.bmp'
-    imgt_path = 'ottawa_gt.bmp'
 
     # important parameter
     patch_size = 7
@@ -124,8 +136,6 @@ if __name__ == "__main__":
     # read image, and then tranform to float32
     im1 = skimage.io.imread(im1_path)[:,:,0].astype(np.float32)
     im2 = skimage.io.imread(im2_path)[:,:,0].astype(np.float32)
-
-    im_gt = io.imread(imgt_path)[:,:,0].astype(np.float32)
 
     im_di = dicomp(im1, im2)
     ylen, xlen = im_di.shape
@@ -145,28 +155,7 @@ if __name__ == "__main__":
     mdata[:,:,0] = im1
     mdata[:,:,1] = im2
     mdata[:,:,2] = im_di
-    mlabel = preclassify_lab
-
-    def image_padding(data,r):
-        if len(data.shape)==3:
-            data_new=np.lib.pad(data,((r,r),(r,r),(0,0)),'constant',constant_values=0)
-            return data_new
-        if len(data.shape)==2:
-            data_new=np.lib.pad(data,r,'constant',constant_values=0)
-            return data_new
-
-    def createTestingCubes(X, patch_size):
-        # 给 X 做 padding
-        margin = int((patch_size - 1) / 2)
-        zeroPaddedX = image_padding(X, margin)
-        patchesData = np.zeros( (X.shape[0]*X.shape[1], patch_size, patch_size, X.shape[2]) )
-        patchIndex = 0
-        for r in range(margin, zeroPaddedX.shape[0] - margin):
-            for c in range(margin, zeroPaddedX.shape[1] - margin):
-                patch = zeroPaddedX[r - margin:r + margin + 1, c - margin:c + margin + 1]   
-                patchesData[patchIndex, :, :, :] = patch
-                patchIndex = patchIndex + 1
-        return patchesData   
+    mlabel = preclassify_lab   
 
     x_test = createTestingCubes(mdata, patch_size)
     x_test = x_test.transpose(0, 3, 1, 2)
