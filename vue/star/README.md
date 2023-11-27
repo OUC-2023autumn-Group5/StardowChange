@@ -1,4 +1,4 @@
-# vue-project
+# star
 
 ## Project setup
 ```
