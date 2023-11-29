@@ -82,8 +82,8 @@ def predict(im1_path, im2_path, net_path, out_path):
 
 if __name__ == "__main__":
     # 读入图片
-    im1_path  = 'SAR/dataset/before2.bmp'
-    im2_path  = 'SAR/dataset/after2.bmp'
+    im1_path  = 'StardowChange/model/before2.bmp'
+    im2_path  = 'StardowChange/model/after2.bmp'
     net_path = 'StardowChange/model/model.pt'
     print("load ok")
     outputs = predict(im1_path, im2_path, net_path, '1.bmp')
