@@ -85,7 +85,7 @@
         </p>
       </div>
     </el-tab-pane>
-    <el-tab-pane label="项目例子" name="third">
+    <el-tab-pane label="参考样例" name="third">
       <p>以下展示的是使用我们模型进行sar图像变化检测的例子(前两张图为要检测的图,最后一张为输出的结果)</p>
       <div>
         <img src="before.bmp" width="250px" height="250px" style="vertical-align:middle;margin:50px 50px"> 
@@ -100,7 +100,7 @@
     </el-tab-pane>
     <el-tab-pane label="开始检测" name="fourth">
           <div class=butt>
-            <el-button type="primary" ><router-link to="/vue" class='input'>开始上传图片进行检测</router-link></el-button>
+            <el-button type="primary" ><router-link to="/vue" class='input'>开始使用</router-link></el-button>
           </div>
         </el-tab-pane>
   </el-tabs>
@@ -142,5 +142,11 @@ p {
 }
 .text{
   font-size: 120%;
+}
+.butt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* 可根据实际需要调整高度 */
 }
 </style>

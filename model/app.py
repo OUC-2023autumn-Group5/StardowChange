@@ -23,10 +23,10 @@ def upload():
     f = request.files['file']
     print(f.filename)
     f.save('before.bmp')
-    # image_file = Image.open(f.filename)  # open colour image
-    # image_file = image_file.convert('1')  # convert image to black and white
-    # path = '../vue/star/public/result.png'//需要保存到的路径
-    # image_file.save(path)
+    # # image_file = Image.open(f.filename)  # open colour image
+    # # image_file = image_file.convert('1')  # convert image to black and white
+    # # path = '../vue/star/public/result.png'//需要保存到的路径
+    # # image_file.save(path)
     print('success')
     return 'success'
 

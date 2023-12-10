@@ -27,7 +27,14 @@ def createTestingCubes(X, patch_size):
     return patchesData
 
 def predict(im1_path, im2_path, net_path, out_path):
-
+    """
+    获取预测结果。
+    :param im1_path: 第一张图片的位置。
+    :param im2_path: 第二张图片的位置。
+    :param net_path: 模型的位置。
+    :param out_path: 输出图片的位置。
+    :return:    结果图片数组。
+    """
     net = torch.load(net_path)
 
     im1 = skimage.io.imread(im1_path)[:,:,0].astype(np.float32)
@@ -82,8 +89,8 @@ def predict(im1_path, im2_path, net_path, out_path):
 
 if __name__ == "__main__":
     # 读入图片
-    im1_path  = 'StardowChange/model/before2.bmp'
-    im2_path  = 'StardowChange/model/after2.bmp'
+    im1_path  = 'SAR/dataset/before2.bmp'
+    im2_path  = 'SAR/dataset/after2.bmp'
     net_path = 'StardowChange/model/model.pt'
     print("load ok")
     outputs = predict(im1_path, im2_path, net_path, '1.bmp')
