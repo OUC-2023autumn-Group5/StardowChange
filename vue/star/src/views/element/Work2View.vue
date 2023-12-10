@@ -17,7 +17,7 @@ multiple
 <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传变化后图片</el-button>
 <el-button style="margin-left: 10px;" size="small" type="primary" ><router-link to="/result" class="no">查看结果</router-link></el-button>
 <el-button style="margin-left: 10px;" size="small" type="primary" ><router-link to="/vue" class="no">返回上一步</router-link></el-button>
-<div slot="tip" class="el-upload__tip">只能上传一个bmp文件，且不超过500kb</div>
+<div slot="tip" class="el-upload__tip">只能上传一个bmp文件，且不超过500kb，等待文件上传完成，才可查看结果</div>
 </el-upload>
 </div>
 </el-main>

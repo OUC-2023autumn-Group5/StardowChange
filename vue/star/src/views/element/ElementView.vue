@@ -86,7 +86,7 @@
       </div>
     </el-tab-pane>
     <el-tab-pane label="参考样例" name="third">
-      <p>以下展示的是使用我们模型进行sar图像变化检测的例子(前两张图为要检测的图,最后一张为输出的结果)</p>
+      <p>以下展示的是使用我们模型进行sar图像变化检测的例子(前两张图为变化前后的图,最后一张为模型输出的结果)</p>
       <div>
         <img src="before.bmp" width="250px" height="250px" style="vertical-align:middle;margin:50px 50px"> 
         <img src="after.bmp" width="250px" height="250px" style="vertical-align:middle;margin:50px 50px">
