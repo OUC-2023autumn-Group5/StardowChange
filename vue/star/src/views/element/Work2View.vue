@@ -1,8 +1,8 @@
 <template>
-<el-container>
+<el-container class="upload-container">
 <!-- <el-header>Header</el-header> -->
 <el-main>
-<div margin: auto>
+<div class="container">
 <el-upload
 class="upload-demo"
 ref="upload"
@@ -27,29 +27,29 @@ multiple
 </template>
 <script>
 export default {
-data() {
-return {
-fileList: [],
-};
-},
-methods: {
-handleAvatarSuccess() {},
-submitUpload() {
-this.$refs.upload.submit();
-},
-handleRemove(file, fileList) {
-console.log(file, fileList);
-},
-handlePreview(file) {
-console.log(file);
-},
-},
+  data() {
+    return {
+      fileList: [],
+    };
+  },
+  methods: {
+    handleAvatarSuccess() {},
+    submitUpload() {
+      this.$refs.upload.submit();
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+  },
 };
 </script>
 
 <style >
 .no {
-text-decoration: none;
-color: white;
+  text-decoration: none;
+  color: white;
 }
 </style>
