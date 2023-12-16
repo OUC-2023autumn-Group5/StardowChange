@@ -109,7 +109,7 @@
       </div>
     </el-tab-pane>
     <el-tab-pane label="开始检测" name="fourth" style="width:75%; margin:auto;">
-      <div class=butt>
+      <div class='butt'>
         <el-button type="primary" ><router-link to="/vue" class='input'>开始使用</router-link></el-button>
       </div>
     </el-tab-pane>
@@ -149,7 +149,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* 可根据实际需要调整高度 */
+  height: 100vh; /* 可根据实际需要调整高度 */
 }
 body{
   background-color: rgb(39,39,39); 
