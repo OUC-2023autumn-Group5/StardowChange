@@ -1,6 +1,7 @@
 <template>
   <el-container class="upload-container">
     <el-main>
+      <div  class="container2">模型运行需要时间，需要大概五到七分钟</div>
       <div class="container1">
         <el-upload
           class="avatar-uploader"
@@ -110,7 +111,11 @@ body{
   height: 32vh;
 
 }
-
+.container2{
+  display: flex;
+  justify-content: center;
+  align-items: center；
+}
 .centered {
   text-align: center;
 }
