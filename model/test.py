@@ -5,6 +5,7 @@ from preclassify import dicomp, hcluster
 import torch
 from Net import DDNet, MRC
 import skimage.io
+from PIL import Image
 
 def image_padding(data,r):
     if len(data.shape)==3:
@@ -38,10 +39,24 @@ def predict(im1_path, im2_path, net_path, out_path):
     """
     net = torch.load(net_path)
 
+    #读取图像文件
+    image1 = Image.open(im1_path)
+    image2 = Image.open(im2_path)
+    channel1 = image1.mode
+    channel2 = image2.mode
+    print(channel1,channel2)
+
     im_1_o = skimage.io.imread(im1_path)
     im_2_o = skimage.io.imread(im2_path)
-    im1 = skimage.color.gray2rgb(im_1_o)[:,:,0].astype(np.float32)
-    im2 = skimage.color.gray2rgb(im_2_o)[:,:,0].astype(np.float32)
+
+    if channel1 == 'L':
+        im1 = skimage.color.gray2rgb(im_1_o)[:,:,0].astype(np.float32)
+    else:
+        im1= im_1_o[:,:,0].astype(np.float32)
+    if channel2 == 'L':
+        im2 = skimage.color.gray2rgb(im_2_o)[:,:,0].astype(np.float32)
+    else:
+        im2 = im_2_o[:,:,0].astype(np.float32)
     # important parameter
     patch_size = 7
     # tranform image to float32
@@ -92,8 +107,8 @@ def predict(im1_path, im2_path, net_path, out_path):
 
 if __name__ == "__main__":
     # 读入图片
-    im1_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\Yellow_River_1.bmp'
-    im2_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\Yellow_River_2.bmp'
+    im1_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\bern_1.bmp'
+    im2_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\bern_2.bmp'
     net_path = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\Stardow_\\model\\net-8.pt'
     print("load ok")
     outputs = predict(im1_path, im2_path, net_path, '1.bmp')
