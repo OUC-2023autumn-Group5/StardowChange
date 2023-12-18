@@ -35,7 +35,7 @@ def srad(im, delta):
         gLy = signal.convolve2d(X, [[0,0,0],[0,-1,0],[0,1,0]], mode='same', boundary='symm')
         q1 = np.sqrt(gRx*gRx+gRy*gRy+gLx*gLx+gLy*gLy)/(X+0.0001)
         q2 = 4*del2(X)/(X+0.0001)        
-        q = np.sqrt((1/2*(q1*q1)-1/16*(q2*q2))/((1+1/4*q2)*(1+1/4*q2)+0.01)) 
+        q = np.sqrt(abs(1/2*(q1*q1)-1/16*(q2*q2))/((1+1/4*q2)*(1+1/4*q2)+0.01)) 
         c = 1/(1+((q*q-q0*q0)/(q0*q0*(1+q0*q0))))
         d = signal.convolve2d(c, [[0,0,0],[0,0,-1],[0,0,0]],  mode='same', boundary='symm')* \
             signal.convolve2d(X, [[0,0,0],[0,1,-1],[0,0,0]], mode='same', boundary='symm')+ \
