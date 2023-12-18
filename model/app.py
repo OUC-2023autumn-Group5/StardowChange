@@ -4,7 +4,6 @@ from flask import request
 from PIL import Image
 from flask import render_template
 from flask import Flask,send_file
-
 import sys
 sys.path.append("../")
 from test import predict
@@ -45,12 +44,15 @@ def upload2():
     print('success')
     return 'success'
 
-@app.route("/work", methods=['post', 'get'])
+@app.route("/work", methods=['post','get'])
 def work():
-    path = './result.png'
-    predict("before.bmp","after.bmp","net-6.pt",path)
     image_path = 'result.png'
-
+    if request.method == 'POST':
+        path = './result.png'
+        predict("before.bmp","after.bmp","net-6.pt",path)
+    elif request.method == 'GET':
+        image_path = 'result.png'
+        print('success')
     # 返回 BMP 图片
     return send_file(image_path, mimetype='image/png')
     # return 'success'

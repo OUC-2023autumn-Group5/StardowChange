@@ -70,22 +70,26 @@ export default {
       },
       startWork() {
           fetch('http://127.0.0.1:5000/work', {
-            timeout:300000,
-    method: 'GET',
-  })
-  .then((response) => {
-    // 请求成功后，获取返回的 BMP 图片 URL
-    return response.url;
-  })
-  .then((url) => {
-    // 将 BMP 图片显示在页面上
+          method: 'post',
+          "Access-Control-Allow-Origin" : "*",
+          "Access-Control-Allow-Credentials" : true,
+          headers: {
+         'Content-Type': 'application/json'
+          },
+          })
+          .then((response) => {
+          // 请求成功后，获取返回的 BMP 图片 URL
+          return response.url;
+          })
+          .then((url) => {
+          // 将 BMP 图片显示在页面上
     document.getElementById("png-img").src = url;
     document.getElementById("png-img").style.display = "block";
-  })
-  .catch((error) => {
+    })
+    .catch((error) => {
     // 请求失败，输出错误信息
     console.error('Error:', error);
-  });
+    });
 }
     }
   }
