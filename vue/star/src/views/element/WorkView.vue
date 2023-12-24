@@ -26,11 +26,10 @@
         </el-upload>
         
       </div>
-    
-      <div class='container1'>
-        <img id ="png-img" src="" alt="PNG Image" style="display:none" >
-
+      <div class="container1" v-loading ="loading" :element-loading-background="backgroundColor" >
+        <img id="png-img" src="" alt="PNG Image" style="display: none" />
       </div>
+  
       <div class='container1'>
         <el-button type="primary" ><router-link to="/" class="no">返回首页</router-link></el-button>
         <el-button type="primary" @click="startWork">开始工作</el-button>
@@ -46,7 +45,9 @@ export default {
     data() {
       return {
         imageUrl1: '',
-        imageUrl2: ''
+        imageUrl2: '',
+        loading:false,
+        backgroundColor:"rgb(39,39,39)"
       };
     },
     methods: {
@@ -69,6 +70,7 @@ export default {
         this.imageUrl2 = URL.createObjectURL(file.raw);
       },
       startWork() {
+          this.loading = true;
           fetch('http://127.0.0.1:5000/work', {
           method: 'post',
           "Access-Control-Allow-Origin" : "*",
@@ -85,6 +87,7 @@ export default {
           // 将 BMP 图片显示在页面上
     document.getElementById("png-img").src = url;
     document.getElementById("png-img").style.display = "block";
+    this.loading = false;
     })
     .catch((error) => {
     // 请求失败，输出错误信息

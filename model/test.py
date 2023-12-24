@@ -37,11 +37,12 @@ def predict(im1_path, im2_path, net_path, out_path):
     :return:    结果图片数组。
     """
     net = torch.load(net_path)
-
-    im_1_o = skimage.io.imread(im1_path)
-    im_2_o = skimage.io.imread(im2_path)
-    im1 = skimage.color.gray2rgb(im_1_o)[:,:,0].astype(np.float32)
-    im2 = skimage.color.gray2rgb(im_2_o)[:,:,0].astype(np.float32)
+    im1 = skimage.io.imread(im1_path)[:,:,0].astype(np.float32)
+    im2 = skimage.io.imread(im2_path)[:,:,0].astype(np.float32)
+    # im_1_o = skimage.io.imread(im1_path)
+    # im_2_o = skimage.io.imread(im2_path)
+    # im1 = skimage.color.gray2rgb(im_1_o)[:,:,0].astype(np.float32)
+    # im2 = skimage.color.gray2rgb(im_2_o)[:,:,0].astype(np.float32)
     # important parameter
     patch_size = 7
     # tranform image to float32
