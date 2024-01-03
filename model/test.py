@@ -29,6 +29,7 @@ def createTestingCubes(X, patch_size):
     return patchesData
 
 def predict(im1_path, im2_path, net_path, out_path):
+
     """
     获取预测结果。
     :param im1_path: 第一张图片的位置。
@@ -48,7 +49,6 @@ def predict(im1_path, im2_path, net_path, out_path):
 
     im_1_o = skimage.io.imread(im1_path)
     im_2_o = skimage.io.imread(im2_path)
-
     if channel1 == 'L':
         im1 = skimage.color.gray2rgb(im_1_o)[:,:,0].astype(np.float32)
     else:
@@ -105,12 +105,12 @@ def predict(im1_path, im2_path, net_path, out_path):
     # 输出一个表示图片的数组
     return outputs-1
 
-if __name__ == "__main__":
+    if __name__ == "__main__":
     # 读入图片
-    im1_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\bern_1.bmp'
-    im2_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\bern_2.bmp'
-    net_path = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\Stardow_\\model\\net-8.pt'
-    print("load ok")
-    outputs = predict(im1_path, im2_path, net_path, '1.bmp')
-    plt.imshow(outputs, 'gray')
-    plt.show()
+        im1_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\bern_1.bmp'
+        im2_path  = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\SAR_train_data\\SAR_train_data\\bern_2.bmp'
+        net_path = 'E:\\Studies\\2023_Autumn\\Software_Engineering\\project\\Stardow_\\model\\net-8.pt'
+        print("load ok")
+        outputs = predict(im1_path, im2_path, net_path, '1.bmp')
+        plt.imshow(outputs, 'gray')
+        plt.show()
