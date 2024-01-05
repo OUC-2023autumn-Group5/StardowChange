@@ -1,3 +1,4 @@
 /model/__pycache__/
-/model/*.bmp
-*.bmp
+/model/before.bmp
+/model/after.bmp
+/*.bmp
