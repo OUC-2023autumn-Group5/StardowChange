@@ -5,6 +5,7 @@ import os
 import sys
 sys.path.append("../")
 from test import predict
+from Net import DDNet,MRC
 
 app = Flask(__name__)
 cors = CORS(app)
