@@ -23,4 +23,4 @@ SAR 图像变化检测是对同一地区不同时相的两幅或多幅图像进�
 
 开发例会记录：[例会记录.md](https://github.com/OUC-2023autumn-Group5/StardowChange/blob/main/%E4%BE%8B%E4%BC%9A%E8%AE%B0%E5%BD%95.md)
 
-项目演示视频：TBA
+项目演示视频：[星影变动：SAR图像变化检测-OUC2023年秋季学期软件工程第04小组](https://www.bilibili.com/video/BV1J94y1u7yG/)
